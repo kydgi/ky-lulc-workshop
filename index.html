@@ -178,9 +178,6 @@
                 <h3 class="r-fit">Access Source Data</h3>
             </section>
 
-            <section data-background-image='./images/background.jpg' data-background-opacity="0.2">
-                <h3 class="r-fit">Task: Start a map project</h3>
-            </section>
 
             <section class="left" data-background-image='./images/background.jpg' data-background-opacity="0.2">
                 <h3 class="r-fit">MRLC</h3>
@@ -250,6 +247,10 @@
                 <h3 class="r-fit">Access Kentucky Data</h3>
             </section>
 
+            <section data-background-image='./images/background.jpg' data-background-opacity="0.2">
+                <h3 class="r-fit">Task: Start a map project</h3>
+            </section>
+
             <section class="left" data-background-image='./images/background.jpg' data-background-opacity="0.2">
                 <h3 class="r-fit">KyRaster REST Services</h3>
                 <ul>
@@ -257,7 +258,7 @@
                     <li class="fragment">Project to Ky Single Zone</li>
                     <li class="fragment">with three raster functions</li>
                     <li class="fragment">and full-size export capability.</li>
-                    <li class="fragment">LYRX Files<a href="https://ky.box.com/v/ky-layerfile-lyrx" target="_blank">🔗</a></li>
+                    <li class="fragment">LYRX Files <a href="https://ky.box.com/v/ky-layerfile-lyrx" target="_blank">🔗</a></li>
                 </ul>
             </section>
 
@@ -325,6 +326,22 @@
             data-background-size="contain"
                 data-background-color="#fff"data-background-opacity="1">
             </section>
+
+            <section class="left" data-background-image='./images/background.jpg' 
+            data-markdown data-separator="---" data-background-opacity="0.2">
+                <textarea data-template>
+                    ```js [1-4|5-7]
+                    // convert count of pixels to area in square miles
+                    var c = $feature.Count
+                    var s = 98.425 ** 2
+                    var t = (c * s) / 2.788e+7
+
+                    // return area rounded to two decimal places
+                    return Round(t, 2)
+                    ```
+			
+                </textarea>
+            </section>
             
 
             <section class="left" data-background-image='./images/background.jpg' data-background-opacity="0.2">
@@ -336,9 +353,49 @@
                 </ul>
             </section>
 
+            <section class="left" data-background-image='./images/background.jpg' data-background-opacity="0.2">
+                <h3 class="r-fit">Land Cover Explorer</h3>
+                <ul>
+                    <li class="fragment">KyGISServer Geoprocessing Service</li>
+                    <li class="fragment">Calculate statistics for two years</li>
+                    <li class="fragment">compare and return the results</li>
+                    <li class="fragment">as GeoJSON.</li>
+                </ul>
+            </section>
+
+            <section class="left" data-background-image='./images/background.jpg' 
+            data-markdown data-separator="---" data-background-opacity="0.2">
+                <textarea data-template>
+                    ```python [1-4|5-13]
+                    sumCover = 0
+                    with arcpy.da.SearchCursor(nlcd, ['Count']) as cursor:
+                        for row in cursor:  
+                            sumCover += row[0]
+                    with arcpy.da.SearchCursor(nlcd, ['Count', 'Class_Name']) as cursor:
+                        for row in cursor:
+                            a = (row[0]/sumCover) * 100
+                            b = (row[0] * 98.4**2) / 2.788e+7
+                            a = round(a, 2)
+                            b = round(b, 1)
+                            c = f'{a}%, {b} sq mi of {row[1]}'
+                    ```
+			
+                </textarea>
+            </section>
+
             <section class="left" data-background-image='./images/d-07.jpg' 
             data-background-size="contain"
                 data-background-color="#fff"data-background-opacity="1">
+            </section>
+
+            <section class="left" data-background-image='./images/background.jpg' data-background-opacity="0.2">
+                <h3 class="r-fit">Land Cover Change Tool</h3>
+                <ul>
+                    <li class="fragment">Local tool uses KyGISServer Geoprocessing Service</li>
+                    <li class="fragment">Calculate statistics for two years</li>
+                    <li class="fragment">for certain types of change.</li>
+                    <li class="fragment">Returns stats and a 1-bit change raster.</li>
+                </ul>
             </section>
 
             <section class="left" data-background-image='./images/d-08.jpg' 
@@ -346,74 +403,51 @@
                 data-background-color="#fff"data-background-opacity="1">
             </section>
 
+            <section class="left" data-background-image='./images/background.jpg' data-background-opacity="0.2">
+                <h3 class="r-fit">Land Cover Change Notebook</h3>
+                <ul>
+                    <li class="fragment">ArcPy and Map Algebra</li>
+                    <li class="fragment">Spatial Analyst Extension needed.</li>
+                    <li class="fragment">Perform complex change analysis</li>
+                    <li class="fragment">Returns 1-bit change raster.</li>
+                </ul>
+            </section>
+
+            <section class="left" data-background-image='./images/background.jpg' 
+            data-markdown data-separator="---" data-background-opacity="0.2">
+                <textarea data-template>
+                    ```python [1-3|5-6|8-12]'
+                    # Load two rasters using name in the workspace
+                    nlcd1985 = arcpy.sa.Raster('Ky_Annual_NLCD_1985_30M')
+                    nlcd2024 = arcpy.sa.Raster('Ky_Annual_NLCD_2024_30M')
+
+                    # Find any change between two rasters
+                    change = (nlcd2024 != nlcd1985)
+
+                    # Find developed areas
+                    developed = ((nlcd2024 < 30) & (nlcd2024 > 21)) & ((nlcd1985 > 30) | (nlcd1985 < 20))
+                    # | the OR operator, & the AND operator
+                    ```
+			
+                </textarea>
+            </section>
+
             <section class="left" data-background-image='./images/d-09.jpg' 
             data-background-size="contain"
                 data-background-color="#fff"data-background-opacity="1">
             </section>
             
+            <section data-background-image='./images/background.jpg' data-background-opacity="0.2">
+                <h3 class="r-fit">Task: Find change from Forest Cover</h3>
+            </section>
             
-            
-
-            
-            
-
 
             <section data-background-opacity="1" data-background-size="contain"
                 data-background-iframe='https://kygeonet.ky.gov/LandcoverExplorer/'>
             </section>
 
-            <section data-background-opacity="1" data-background-size="contain"
-                data-background-iframe='https://contig.us/hawaii/uky-campus/'>
-            </section>
-
-            
-
-            <section class="left" data-background-image='./images/background.jpg' data-background-opacity="0.2">
-                <h3 class="r-fit">Colorization</h3>
-                <ul>
-                    <li class="fragment">RGB attribute in point cloud</li>
-                    <li class="fragment">normally aerial photography.</li>
-                    <li class="fragment"><code style="color:rgb(136, 132, 255)">+change</code> and <code
-                            style="color:rgb(255, 187, 187)">-change</code>
-                    <li class="fragment">Increase and decrease.</li>
-                </ul>
-            </section>
-
-            <section class="left" data-background-image='./images/export-image.jpeg' data-background-opacity="1"
-                data-background-size="contain">
-            </section>
-
-            <section class="left" data-background-image='./images/background.jpg' data-background-opacity="0.2">
-                <h3 class="r-fit">Two points</h3>
-                <ul>
-                    <li class="fragment">Intersecting point clouds</li>
-                    <li class="fragment"><code style="color:rgb(136, 132, 255)">P<sub>t2</sub></code> and <code
-                            style="color:rgb(255, 187, 187)">P<sub>t1</sub></code></li>
-                    <li class="fragment">shown in same view.</li>
-                </ul>
-            </section>
-
-
-
-            <section data-background-opacity="1" data-background-size="contain"
-                data-background-iframe='https://contig.us/hawaii/lex-change/'>
-            </section>
-
-            <section class="left" data-background-image='./images/export-image.jpeg' data-background-opacity="0.2"
-                data-background-size="contain">
-                <h3>ArcPy notebook <a target="_blank"
-                        href="https://github.com/kydgi/pz-nacis-2025/blob/main/notebook/process_DSM_change.ipynb">🔗</a>
-                </h3>
-
-            </section>
-
-
-            <section data-pre-load data-background-image="./images/iq-ov.jpg" data-background-opacity="0.4">
+            <section data-pre-load data-background-image='./images/background.jpg' data-background-opacity="0.4">
                 <h3>Thank you!</h3>
-                <h4>KyFromAbove resources
-                    <a target="_blank" href="https://kyfromabove.ky.gov/">🔗</a><br>web apps
-                    <a target="_blank" href="https://boydx.github.io/kyfromabove">🔗</a>
-                </h4>
             </section>
         </div>
     </div>
