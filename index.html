@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>Kentucky's Annual Land Cover Workshops</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Averia+Sans+Libre:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Edu+SA+Beginner:wght@400..700&display=swap"
+        rel="stylesheet">
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hubot+Sans:ital,wght@0,200..900;1,200..900&display=swap"
+        rel="stylesheet"> -->
+
+    <link rel="stylesheet" href="https://uky-gis.github.io/geo509/slides/dist/reset.css" />
+    <link rel="stylesheet" href="https://uky-gis.github.io/geo509/slides/dist/reveal.css" />
+    <link rel="stylesheet" href="https://uky-gis.github.io/geo509/slides/dist/theme/league-109.css" id="theme" />
+
+    <!-- Theme used for syntax highlighted code -->
+    <link rel="stylesheet" href="https://uky-gis.github.io/geo509/slides/dist/plugin/highlight/zenburn.css"
+        id="highlight-theme" />
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+    <div class="reveal">
+        <!-- <div class="top-module">
+            <a target='_blank' href="https://github.com/boydx/inside-outside">Repo</a>
+        </div> -->
+        <div class="slides">
+            <section data-pre-load data-background-image="images/background.jpg" data-background-opacity="0.2">
+                <span class="title-font">Visualizing Change</span>
+                <h5 class="sub-title-font">Kentucky's Annual Land Cover Workshop</h5>
+                <h4>@<a href="https://boyd.xyz/u" target="_blank">boyd.xyz/u</a></h4>
+                <!-- <h2>Welcome</h2> -->
+                <div class="ll" >
+                    Kentucky GIS Conference
+                    <!-- Oblique image of downtown Louisville. Find more
+                    <a href="https://boydx.github.io/phase-3-oblique-centroids" target="_blank">Ky obliques</a> -->
+                </div>
+                <div class='lr'>September 29, 2026</div>
+            </section>
+            <section class='left' data-background-image="images/background.jpg" data-background-opacity="0.2">
+                <h3>Boyd Shearer</h3>
+                <ul>
+                    
+                    <li class='fragment'>
+                        Assistant Director, Ky DGI <a href="https://kyfromabove.ky.gov/"
+                            target="_blank">🔗</a>
+                    </li>
+                    <li class='fragment'>
+                        outrageGIS mapping <a href="https://www.outragegis.com" target="_blank">🔗</a>
+                    </li>
+                    <li class='fragment'>
+                        former Senior Lecturer, UKy Geography <a href="https://geography.as.uky.edu/users/blshea1"
+                            target="_blank">🔗</a>
+                    </li> 
+                </ul>
+            </section>
+
+
+            
+
+            <section data-background-image='./images/NLCD-orig.png' 
+            data-background-size="contain"
+                data-background-color="#aaa"data-background-opacity="1">
+                <h3 class="item-title-block fragment"><a href="https://ky.app.box.com/s/26f4o308m41jgs4a2pv2kvmy3fcesv98" target="_blank">Change</a></h3>
+            </section>
+
+            <section class="left" data-background-image='./images/background.jpg' data-background-opacity="0.2">
+                <blockquote>"When we try to pick out anything by itself, we find it hitched to everything else in the universe." <br>– John Muir, <em>My First Summer in the Sierra</em> </blockquote>
+                <!-- <span class="fragment"></span> -->
+            </section>
+
+            <section class="left" data-background-image='./images/NLCD_metric_spotlight_infographic_small_2025.jpg' 
+            data-background-size="contain"
+                data-background-color="#fff"data-background-opacity="1">
+            </section>
+
+            
+
+            <section class="left" data-background-image='./images/lulc-ky.png' 
+            data-background-size="contain"
+                data-background-color="#fff"data-background-opacity="1">
+            </section>
+
+            <section class="left" data-background-image='./images/lulc-slade.jpg' data-background-opacity="1">
+                
+            </section>
+
+            <section class="left" data-background-image='./images/lulc-zoomed.jpg' data-background-opacity="1">
+                
+            </section>
+
+            <section class="left" data-background-image='./images/lulc-attribute-01.png' 
+                data-background-size="contain"
+                data-background-color="#fff"
+                data-background-opacity="1">
+            </section>
+
+            <section class="left" data-background-image='./images/lulc-attribute-02.png' 
+                data-background-size="contain"
+                data-background-color="#fff"
+                data-background-opacity="1">
+            </section>
+            
+
+            <section class="left" data-background-image='./images/background.jpg' 
+            data-markdown data-separator="---" data-background-opacity="0.2">
+                <textarea data-template>
+                    ```python [1-2|4-5]
+                    # Find area of a land cover class
+                    area = Count * 900 square meters
+
+                    # Find change in land cover class area
+                    change = area_t2 - area_t1
+                    ```
+			
+                </textarea>
+            </section>
+
+            <section class="left" data-background-image='./images/background.jpg' data-background-opacity="0.2">
+                <h3 class="r-fit">Agenda</h3>
+                <ul>
+                    <li class="fragment">What is Land Cover?</li>
+                    <li class="fragment">Where can I get it?</li>
+                    <li class="fragment">How can I use it?</li>
+                </ul>
+            </section>
+
+            <section class="left" data-background-image='./images/background.jpg' data-background-opacity="0.2">
+                <h3 class="r-fit">NLCD</h3>
+                <ul>
+                    <li class="fragment">USGS National Land Cover Database <a href="https://www.usgs.gov/centers/eros/science/national-land-cover-database" target="_blank">🔗</a></li>
+                    <li class="fragment">derived from Landsat imagery</li>
+                    <li class="fragment">categorizing land cover into 16 classes.</li>
+                </ul>
+            </section>
+
+            <section data-background-opacity="1" data-background-size="contain"
+                data-background-iframe='https://www.youtube.com/embed/mLCw-Wy2_Jg?si=YVrY2Q144eUZgurn&amp;start=1660'>
+            </section>
+
+            <section class="left" data-background-image='./images/background.jpg' data-background-opacity="0.2">
+                <h3 class="r-fit">Original NLCD</h3>
+                <ul>
+                    <li class="fragment">Nine versions have been created (2001-2021)</li>
+                    <li class="fragment">each version is comparable to the others</li>
+                    <li class="fragment">but now they are legacy data.</li>
+                </ul>
+            </section>
+
+            <section class="left" data-background-image='./images/background.jpg' data-background-opacity="0.2">
+                <h3 class="r-fit">Annual NLCD</h3>
+                <ul>
+                    <li class="fragment">Annual version starting in 1985 <a href="https://www.usgs.gov/centers/eros/science/annual-national-land-cover-database" target="_blank">🔗</a></li>
+                    <li class="fragment">uses ensemble of deep learning models</li>
+                    <li class="fragment">each version is comparable to the others</li>
+                    <li class="fragment">but not to legacy data.</li>
+                </ul>
+            </section>
+
+            <section class="left" data-background-image='./images/background.jpg' data-background-opacity="0.2">
+                <h3 class="r-fit">Data characteristics</h3>
+                <ul>
+                    <li class="fragment">Thematic raster with a Raster Attribute Table (RAT).</li>
+                    <li class="fragment">(most commonly) 8-bit integer data type.</li>
+                    <li class="fragment">30 meter spatial resolution.</li>
+                    <li class="fragment">Yearly updates.</li>
+                </ul>
+            </section>
+
+            <section data-background-image='./images/background.jpg' data-background-opacity="0.2">
+                <h3 class="r-fit">Access Source Data</h3>
+            </section>
+
+            <section data-background-image='./images/background.jpg' data-background-opacity="0.2">
+                <h3 class="r-fit">Task: Start a map project</h3>
+            </section>
+
+            <section class="left" data-background-image='./images/background.jpg' data-background-opacity="0.2">
+                <h3 class="r-fit">MRLC</h3>
+                <ul>
+                    <li class="fragment">Multi-Resolution Land Characteristics <a href="https://www.mrlc.gov/data" target="_blank">🔗</a></li>
+                    <li class="fragment">suite of land cover products</li>
+                    <li class="fragment">guided by consortium of federal agencies.</li>
+                    <li class="fragment">Download as GeoTIFFs.</li>
+                </ul>
+            </section>
+
+            
+
+            <section data-background-image='./images/t-01.jpg' data-background-opacity="1">
+                <h3 class="item-title-block fragment">Suite of six core products with other derivatives</h3>
+            </section>
+
+            <section  data-background-image='./images/t-00.png' data-background-opacity="1">
+                <h3 class="item-title-block fragment">Land Cover</h3>
+            </section>
+
+            <section  data-background-image='./images/t-02.jpg' data-background-opacity="1">
+                <h3 class="item-title-block fragment">Fractional Impervious Surface</h3>
+            </section>
+
+            <section  data-background-image='./images/t-03.jpg' data-background-opacity="1">
+                <h3 class="item-title-block fragment">Impervious Descriptor</h3>
+            </section>
+
+            <section  data-background-image='./images/t-04.png' data-background-opacity="1">
+                <h3 class="item-title-block fragment">Land Cover Change</h3>
+            </section>
+
+            <section   data-background-image='./images/t-05.png' data-background-opacity="1">
+                <h3 class="item-title-block fragment">Land Cover Confidence</h3>
+            </section>
+
+            <section data-background-image='./images/t-05.5.png' data-background-opacity="1">
+                <h3 class="item-title-block fragment">Spectral Change Day of Year</h3>
+            </section>
+
+            <section  data-background-image='./images/t-06.png' data-background-opacity="1">
+                <h3 class="item-title-block fragment">NLCD Tree Canopy Cover</h3>
+            </section>
+
+            <section  data-background-image='./images/t-07.png' data-background-opacity="1">
+                <h3 class="item-title-block fragment">Land Cover Change Index since 1985</h3>
+            </section>
+
+            <section  data-background-image='./images/t-07.5.png' data-background-opacity="1">
+                
+            </section>
+
+            <section  data-background-image='./images/t-08.png' data-background-opacity="1">
+                <h3 class="item-title-block fragment">Land Cover Change Count since 1985</h3>
+            </section>
+
+            <section  data-background-image='./images/t-09.png' data-background-opacity="1">
+                <h3 class="item-title-block fragment">Falls of the Ohio</h3>
+            </section>
+
+             <section  data-background-image='./images/t-10.jpg' data-background-opacity="1">
+               
+            </section>
+
+             <section data-background-image='./images/background.jpg' data-background-opacity="0.2">
+                <h3 class="r-fit">Access Kentucky Data</h3>
+            </section>
+
+            <section class="left" data-background-image='./images/background.jpg' data-background-opacity="0.2">
+                <h3 class="r-fit">KyRaster REST Services</h3>
+                <ul>
+                    <li class="fragment">New Thematic Services <a href="https://kyraster.ky.gov/arcgis/rest/services/ThematicServices" target="_blank">🔗</a></li>
+                    <li class="fragment">Project to Ky Single Zone</li>
+                    <li class="fragment">with three raster functions</li>
+                    <li class="fragment">and full-size export capability.</li>
+                    <li class="fragment">LYRX Files<a href="https://ky.box.com/v/ky-layerfile-lyrx" target="_blank">🔗</a></li>
+                </ul>
+            </section>
+
+            <section data-background-image='./images/background.jpg' data-background-opacity="0.2">
+                <h3 class="r-fit">Task: Get two Land Cover datasets</h3>
+            </section>
+
+
+            <section class="left" data-background-image='./images/d-02.jpg' 
+            data-background-size="contain"
+                data-background-color="#fff"data-background-opacity="1">
+            </section>
+
+            <section data-background-image='./images/background.jpg' data-background-opacity="0.2">
+                <h3 class="r-fit">Task: Extract to local workspace</h3>
+            </section>
+
+            <section class="left" data-background-image='./images/d-01.jpg' 
+            data-background-size="contain"
+                data-background-color="#fff"data-background-opacity="1">
+            </section>
+            
+            <section class="left" data-background-image='./images/background.jpg' data-background-opacity="0.2">
+                <h3 class="r-fit">Raster source files</h3>
+                <ul>
+                    <li class="fragment">Folder of TIFFs <a href="https://ky.box.com/s/bdkw3dwnavl1yxrwzuy5sz7upp6av3om" target="_blank">🔗</a></li>
+                    <li class="fragment">FGDBs <a href="https://ky.box.com/s/gx1o9dwd8gp0q86q4qrk9qv9vrx2okqj" target="_blank">🔗</a></li>
+                    <li class="fragment">Samples for Workshop <a href="https://ky.box.com/s/8alz4yiqqj2ce7ruqzx343qxgb81tufv" target="_blank">🔗</a></li>
+                </ul>
+            </section>
+            
+<section data-background-image='./images/background.jpg' data-background-opacity="0.2">
+                <h3 class="r-fit">Task: Change the color scheme</h3>
+            </section>
+
+
+            <section class="left" data-background-image='./images/d-03.jpg' 
+            data-background-size="contain"
+                data-background-color="#fff"data-background-opacity="1">
+            </section>
+            
+
+            <section data-background-image='./images/background.jpg' data-background-opacity="0.2">
+                <h3 class="r-fit">Task: Add shaded relief</h3>
+            </section>
+            
+
+            <section class="left" data-background-image='./images/d-04.jpg' 
+            data-background-size="contain"
+                data-background-color="#fff"data-background-opacity="1">
+            </section>
+            
+
+            <section data-background-image='./images/background.jpg' data-background-opacity="0.2">
+                <h3 class="r-fit">Task: Add area measurements</h3>
+            </section>
+
+            <section class="left" data-background-image='./images/d-05.jpg' 
+            data-background-size="contain"
+                data-background-color="#fff"data-background-opacity="1">
+            </section>
+            
+
+            <section class="left" data-background-image='./images/d-06.jpg' 
+            data-background-size="contain"
+                data-background-color="#fff"data-background-opacity="1">
+            </section>
+            
+
+            <section class="left" data-background-image='./images/background.jpg' data-background-opacity="0.2">
+                <h3 class="r-fit">Analyze change</h3>
+                <ul>
+                    <li class="fragment">In the cloud and on your machine</li>
+                    <li class="fragment">Web page <a href="https://kygeonet.ky.gov/LandcoverExplorer/" target="_blank">🔗</a></li>
+                    <li class="fragment">Tools for Workshop <a href="https://ky.box.com/s/4i5q0vbcd2cwxgcntyg4wlq1neuhb8lc" target="_blank">🔗</a></li>
+                </ul>
+            </section>
+
+            <section class="left" data-background-image='./images/d-07.jpg' 
+            data-background-size="contain"
+                data-background-color="#fff"data-background-opacity="1">
+            </section>
+
+            <section class="left" data-background-image='./images/d-08.jpg' 
+            data-background-size="contain"
+                data-background-color="#fff"data-background-opacity="1">
+            </section>
+
+            <section class="left" data-background-image='./images/d-09.jpg' 
+            data-background-size="contain"
+                data-background-color="#fff"data-background-opacity="1">
+            </section>
+            
+            
+            
+
+            
+            
+
+
+            <section data-background-opacity="1" data-background-size="contain"
+                data-background-iframe='https://kygeonet.ky.gov/LandcoverExplorer/'>
+            </section>
+
+            <section data-background-opacity="1" data-background-size="contain"
+                data-background-iframe='https://contig.us/hawaii/uky-campus/'>
+            </section>
+
+            
+
+            <section class="left" data-background-image='./images/background.jpg' data-background-opacity="0.2">
+                <h3 class="r-fit">Colorization</h3>
+                <ul>
+                    <li class="fragment">RGB attribute in point cloud</li>
+                    <li class="fragment">normally aerial photography.</li>
+                    <li class="fragment"><code style="color:rgb(136, 132, 255)">+change</code> and <code
+                            style="color:rgb(255, 187, 187)">-change</code>
+                    <li class="fragment">Increase and decrease.</li>
+                </ul>
+            </section>
+
+            <section class="left" data-background-image='./images/export-image.jpeg' data-background-opacity="1"
+                data-background-size="contain">
+            </section>
+
+            <section class="left" data-background-image='./images/background.jpg' data-background-opacity="0.2">
+                <h3 class="r-fit">Two points</h3>
+                <ul>
+                    <li class="fragment">Intersecting point clouds</li>
+                    <li class="fragment"><code style="color:rgb(136, 132, 255)">P<sub>t2</sub></code> and <code
+                            style="color:rgb(255, 187, 187)">P<sub>t1</sub></code></li>
+                    <li class="fragment">shown in same view.</li>
+                </ul>
+            </section>
+
+
+
+            <section data-background-opacity="1" data-background-size="contain"
+                data-background-iframe='https://contig.us/hawaii/lex-change/'>
+            </section>
+
+            <section class="left" data-background-image='./images/export-image.jpeg' data-background-opacity="0.2"
+                data-background-size="contain">
+                <h3>ArcPy notebook <a target="_blank"
+                        href="https://github.com/kydgi/pz-nacis-2025/blob/main/notebook/process_DSM_change.ipynb">🔗</a>
+                </h3>
+
+            </section>
+
+
+            <section data-pre-load data-background-image="./images/iq-ov.jpg" data-background-opacity="0.4">
+                <h3>Thank you!</h3>
+                <h4>KyFromAbove resources
+                    <a target="_blank" href="https://kyfromabove.ky.gov/">🔗</a><br>web apps
+                    <a target="_blank" href="https://boydx.github.io/kyfromabove">🔗</a>
+                </h4>
+            </section>
+        </div>
+    </div>
+
+    <script src="https://uky-gis.github.io/geo509/slides/dist/reveal.js"></script>
+    <script src="https://uky-gis.github.io/geo509/slides/dist/plugin/notes/notes.js"></script>
+    <script src="https://uky-gis.github.io/geo509/slides/dist/plugin/markdown/markdown.js"></script>
+    <script src="https://uky-gis.github.io/geo509/slides/dist/plugin/highlight/highlight.js"></script>
+    <script>
+        // More info about initialization & config:
+        // - https://revealjs.com/initialization/
+        // - https://revealjs.com/config/
+        Reveal.initialize({
+            hash: true,
+            backgroundTransition: "fade",
+            // Transition style
+            transition: "fade", // none/fade/slide/convex/concave/zoom
+
+            // Transition speed
+            transitionSpeed: "fast", // default/fast/slow
+
+            // Learn about plugins: https://revealjs.com/plugins/
+            plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
+        });
+    </script>
+</body>
+
+</html>
